@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'userAuthentication'
+    'userAuthentication',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 
@@ -65,6 +67,10 @@ SIMPLE_JWT = {
 }
 
 AUTH_USER_MODEL = 'userAuthentication.UserAccount'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  
+]
 
 
 ROOT_URLCONF = 'magic_words.urls'
