@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-
+import os
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+cq@gnb1_bqhtqlifx81(t3$@c1m09)y$#_*u4d3@azyeesjj^'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -101,8 +102,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "magic_words_db",
-        "USER": "postgres",
-        "PASSWORD": "Asif@123",
+        "USER": config("DATABASE_USER"),
+        "PASSWORD": config("DATABASE_USER_PASSWORD"),
         "HOST": "localhost",
         "PORT": "5432",
     }
@@ -150,4 +151,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-OPENAI_API_KEY = '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'
+OPENAI_API_KEY = config("OPENAI_API_KEY")
