@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import RegisterView, RetriveUserView
+from .views import RegisterView, RetriveUserView, GenrateImageView
 
 
 urlpatterns = [
     path("register/", RegisterView.as_view()),
     path("userinfo/", RetriveUserView.as_view()),
+    path('img/', GenrateImageView.as_view()), 
+
 ]
