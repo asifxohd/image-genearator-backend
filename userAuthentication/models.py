@@ -40,6 +40,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(unique=True, max_length=12)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     objects = UserAccountManager()
     USERNAME_FIELD = "email"

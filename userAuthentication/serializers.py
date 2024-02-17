@@ -1,18 +1,24 @@
+""" imports """
 from rest_framework import serializers
-from .models import UserAccount
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
+from .models import UserAccount
 
 
 User = get_user_model()
 
 class UserAccountModelSerializer(serializers.ModelSerializer):
+    """
+    Serializer for UserAccount model.
+    """
+
     class Meta:
         model = UserAccount
         fields = ("username", "password", "email", "phone_number")
 
     def validate(self, data):
+        """ Validate password """
         password = data.get("password")
         user = User(**data)
 
@@ -29,6 +35,9 @@ class UserAccountModelSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
+        """
+        Create new user.
+        """
         user = User.objects.create_user(
             username=validated_data["username"],
             email=validated_data["email"],
@@ -39,7 +48,20 @@ class UserAccountModelSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for UserAccount model.
+    """
+
     class Meta:
         model = UserAccount
         fields = ("username", "email", "phone_number")
 
+
+class ProfileImageSerializer(serializers.ModelSerializer):
+    """
+    Serializer for updating profile image.
+    """
+
+    class Meta:
+        model = UserAccount
+        fields = ("image",)
