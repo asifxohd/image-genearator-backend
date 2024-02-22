@@ -1363,7 +1363,7 @@ var ignore = { hash: 1, query: 1 }
  */
 module.exports = function lolcation(loc) {
   loc = loc || global.location || {};
-  URL = URL || require('./');
+  URL = URL || require('.');
 
   var finaldestination = {}
     , type = typeof loc
